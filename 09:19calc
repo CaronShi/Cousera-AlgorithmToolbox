@@ -1,0 +1,29 @@
+#calc_method = x*2,x*3,x+1 or input-1,input/2,input/3 = 1 end
+inpu = 5 #(3 times 1,2,4,5)
+#how to get input with the min num of operations
+
+steps = [0, 0] #set a list saving result of operations
+last = [0, 0] #set a list saving the last result which is step[i-1]
+for i in range (2, inpu+1):#1,2,3,4,5
+    steps.append (steps [-1]+1)#append a value which is the last value+1
+    last.append(i-1) #0,1,2,3,4
+    if i%2 == 0:
+        #steps [-1] = min (steps [-1], steps [i//2]+1)
+        last_i = i//2 #since i%2==0,there is an integer = 1//2. find its index in the steps, for getting operations
+        if steps[last_i]+1<steps[-1]: #if last_i+1 operations  < the last one's operations
+            steps[-1] = steps[last_i]+1 #steps[-1] is substitued
+            last[-1] = last_i #the final value in last = last_i
+    if i%3 == 0:
+        #steps [-1] = min (steps [-1], steps [i//3]+1)
+        last_i = i//3
+        if steps[last_i]+1<steps[-1]:
+            steps[-1] = steps[last_i]+1
+            last[-1] = last_i
+print(steps[5])#min num of operations
+
+sequence= [inpu] #from inpu to 1
+while sequence[-1]!=0:
+    sequence.append(last[sequence[-1]])
+print(sequence)
+sequence = sequence[:-1][::-1]
+print(sequence)

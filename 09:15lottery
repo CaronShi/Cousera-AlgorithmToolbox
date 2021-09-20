@@ -1,0 +1,40 @@
+#input segements and nums and output the number of in segements
+import sys
+
+args = sys.stdin.read()
+args = args.split()
+n = int(args[0])
+points_num = int(args[1])
+segments = [int(i) for i in args[2:(n*2)+2]]
+points = [int(i) for i in args[(n*2)+2:]]
+
+left = 1
+point = 2
+right = 3
+array = []
+#create arrays[ai, LEFT], [aj, RIGHT], [pk, POINT] with LEFT = 1, POINT = 2, RIGHT = 3
+for num in segments[0::2]:
+    l = [num,left]
+    array.append([num,left])
+for num in segments[1::2]:
+    r = [num,right]
+    array.append([num,right])
+for num in points:
+    p = [num,point]
+    array.append([num,point])
+#sort [ai, LEFT] + [aj, RIGHT] + [pk, POINT]
+sort_array = sorted(array)
+#To compare 2 elements [x, LEFT/RIGHT/POINT] and [y, LEFT/RIGHT/POINT], we compare x and y, if x == y
+#we compare LEFT/RIGHT/POINT basing on the value of LEFT = 1, POINT = 2, RIGHT = 3.
+count = 0
+output = []
+
+for x in sort_array:
+    currentelement = x[1]
+    if currentelement == 1:
+        count = count+1
+    if currentelement == 3:
+        count = count-1
+    if currentelement == 2:
+        output.append(count)
+print(output)

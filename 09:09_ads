@@ -1,0 +1,29 @@
+# input(format: list of tuple)
+#EX: list(a,b) = [(1,3),(2,5)(3,6)]
+n = int(input())
+items=[]
+for _ in range(n):
+    a = int(input())
+    b = int(input())
+    item = [a,b]
+    items.append(item)
+#sorted
+items = sorted(items, key=lambda x:x[1])
+#Greedy: find minimun visiting time
+output=[]
+curruent_tail = items[0][1] #b1
+#数字用i代替，for loop
+#a = items[i][0]; b = items[i][1]
+for i in range(0,len(items)-1):
+    #下一段对b是包含关系: b1>=a2, 取b2=b1
+    if  curruent_tail>= items[i+1][0]:
+        pass
+    #下一段对b是不包含对关系：b1<a2,output出b1
+    else:
+        output.append(curruent_tail)
+        curruent_tail = items[i+1][1]
+output.append(curruent_tail)
+#output the time point using a list.append, delete repeated number
+
+print(output)
+print(items)

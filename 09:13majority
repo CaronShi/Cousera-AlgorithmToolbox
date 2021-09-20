@@ -1,0 +1,36 @@
+#input
+n = 5
+input = [2,3,4,2,3] #0,1,2,3,4
+#1.从中间分成l，r两边
+mid = n//2 #5//2 = 2
+left = list(range(0,mid)) #(0,1)
+right = list(range(mid,n))#(2,3,4)
+#2.找l，r的majority
+for i in left:
+    lcurrentelement = input[i]
+    lcount = 0
+    for j in left:
+        if input[j] == lcurrentelement:
+            lcount+=1
+#print(lcount) #output:1 since everynumber just appears 1 time
+for x in right:
+    rcurrentelement = input[x]
+    rcount = 0
+    for y in right:
+        if input[y] == rcurrentelement:
+            rcount+=1
+#print(rcount) #output:2 since 2 appears 2 times
+
+#3.l，r的major都相同，output
+if rcount==lcount:
+    if rcount==lcount==1:
+        print('no majority')
+    else:
+        print(input[i])
+if rcount>lcount:
+    print(input[x])
+if rcount<lcount:
+    print(input[i])
+#l，r的majority不相同，则count他们，看看谁的majority出现最多.问题：如果2在l有一个，r有两个，3在l有两个，r有两个【2，3，3，2，2，3，2】
+
+#output: if num's count > n/2, num; else 'no majority'

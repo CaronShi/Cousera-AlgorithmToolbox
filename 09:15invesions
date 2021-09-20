@@ -1,0 +1,17 @@
+l = [2,3,9,2,9]
+
+def swap(A,n,m):
+    A[n],A[m] = A[m],A[n]
+    return (A[n],A[m])
+
+#def count():
+    #if A[n],A[m] != A[n],A[m]
+count = 0
+for num in range(0,len(l)):#0,1,2,3,4
+    currentelement = l[num] #2,3,9,2,9
+    for nextnum in range(num+1,len(l)):
+        if currentelement>l[nextnum]:
+            count += 1
+            print(swap(l,nextnum,num))
+print(count)
+             #if swap_list != last list,count +=1

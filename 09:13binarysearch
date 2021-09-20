@@ -1,0 +1,30 @@
+import sys
+def main():
+    args = sys.stdin.read()
+    args = args.split()
+    n = int(args[0])
+    sorted_num =  [int (item) for item in args [1: n+1]]
+    n1 = int(args[n+1])
+    unsorted_num = [int (item) for item in args [n+2:]]
+
+    list = []
+    for key in unsorted_num:
+        ans = binarysearch(sorted_num,0,len(sorted_num),key)
+        list.append(ans)
+    print(list)
+
+def binarysearch(A,low,high,key):
+    mid = 0
+    if high<=low:
+        return -1
+    mid = ((high-low)//2)+low
+    if key == A[mid]:
+        return mid
+    if key<A[mid]:
+        return binarysearch(A,low,mid,key)
+    if key>A[mid]:
+        return binarysearch(A,mid+1,high,key)
+
+
+if __name__=='__main__':
+    main()

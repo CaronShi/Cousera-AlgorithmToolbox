@@ -1,0 +1,13 @@
+#dynamic programing: divide problems to subproblems, momoize subproblems,1+max/min of the sub
+def minnumcoin():
+    def change(money,coins):
+        minnumcoin(0) = 0
+        for m in money:
+            minnumcoin(m) = 1000
+            for i in abs(coins):
+                if m >=i:
+                    numcoins = minnumcoin(m - i +1)
+                    if numcoins < minnumcoin(m):
+                        minnumcoin(m) = numcoins
+        return minnumcoin(money)
+minnumcoin()

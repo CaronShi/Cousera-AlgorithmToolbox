@@ -1,0 +1,38 @@
+#quick sort
+#1.input n list = [2,3,9,2,2]
+import random
+
+n = 5
+input = [2,3,9,2,2]
+  #pivot = random.choice()
+pivot = random.choice(input)
+pivot_index = input.index(pivot)
+def swap(A,n,m): #n,m are index
+    A[n],A[m] = A[m],A[n]
+    return A
+#pivot swap to 1st in the list [0]
+swap(input,pivot_index,0)
+print(input)
+print(pivot)
+#2. create two list
+a = []
+b = []
+for i in range(1,n):
+    if input[i]>pivot: #no move or last b
+        b.append(input[i])
+    if input[i]<=pivot:
+        a.append(input[i])
+
+#3. sort a,b
+for i in range(len(a)):
+    for j in range(1,len(a)):
+        if a[j]<a[i]:
+            swap(a,j,i)
+
+for i in range(len(b)):
+    for j in range(1,len(b)):
+        if b[j]<b[i]:
+            swap(b,j,i)
+#4. swap pivot with the last a and output
+a.append(pivot)
+print(a+b)
