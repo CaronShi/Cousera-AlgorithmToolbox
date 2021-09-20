@@ -1,0 +1,13 @@
+#dynamic programing coins change
+money = int(input())
+coins = [1, 3, 4]
+#money length from 1 to money all need -[1,3,4]+1 are the num of coins need and save the result
+min_n = [0],[999999]*money #create a list of min_n save the result
+for i in range(1,money+1):#1 to money[1,2,3,....9]
+    for j in coins:#1,3,4
+        if i >= j: #only when i>=j, the loop works
+            num_coin = min_n[i-j]+1
+        #find out the min()/best of every results
+            if num_coin < min_n[i]:
+                min_n[i] = num_coin
+print(min_n[money])
