@@ -1,0 +1,33 @@
+n = 4
+A = 2,7,8,3
+m = 4
+B = 5,2,8,7
+
+A_l = []
+for a in range(n):
+    if A[a] in B:
+        A_l.append(A[a])
+
+B_l = []
+for b in range(m):
+    if B[b] in A:
+        B_l.append(B[b])
+print(A_l,B_l)
+
+def sub(arr):
+    finish = []
+    size = len(arr)
+    end = 1 << size #2**size
+    for i in range(end):
+        array = []
+        for j in range(size):
+            if (i >> j)%2 == 1:
+                array.append(arr[j])
+        finish.append(array)
+    return finish
+
+length=[]
+for i in sub(A_l):
+    if i in sub(B_l):
+        length.append(len(i))
+print(max(length))
