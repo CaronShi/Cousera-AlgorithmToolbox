@@ -1,0 +1,22 @@
+#knapsack without repetition
+
+#input
+#n = 4
+w= [6,3,4,2]
+v = [30,14,16,9]
+C= 10
+#create an x:y arrary
+def knapsack(v,w,C):
+    N = len(v)
+    m = {}
+    #initianize value[()] = 0
+    for c in range(C+1):
+        m[(0,c)] = 0
+    for i in range(1,N+1):
+      for c in range(C+1):
+          if w[i-1]<= c:
+              m[(i,c)] = max(m[i-1,c],v[i-1]+m[(i-1,c-w[i-1])])
+          else:
+              m[(i,c)] = m[(i-1,c)]
+    return m[(N,C)]
+print(knapsack(v,w,C))
